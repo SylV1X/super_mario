@@ -19,6 +19,7 @@
 	- Приведите примеры кода, отображающие этот прицип.
 */
 #include <thread>
+#include <chrono>
 
 #include "console_ui_factory.hpp"
 #include "first_level.hpp"
@@ -43,8 +44,8 @@ int main() {
 	// 1. Установка параметров игры
 	using namespace std::chrono_literals;
 	
-	const int map_height = 30;
-	const int map_weight = 200;
+	const int map_height = 28;
+	const int map_weight = 80;
 	auto frame_delay = std::chrono::milliseconds(0);
 	
 	biv::OSControlSettings* control_settings = nullptr;

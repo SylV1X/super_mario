@@ -24,6 +24,7 @@ void FirstLevel::init_data() {
 	
 	ui_factory->create_ship({20, 25}, 40, 2);
 	
+	ui_factory->create_box({18, 19}, 2, 3);
 	ui_factory->create_full_box({30, 15}, 5, 3);
 	ui_factory->create_full_box({50, 15}, 5, 3);
 	
@@ -48,5 +49,5 @@ void FirstLevel::init_data() {
 	ui_factory->create_enemy({160, 5}, 3, 2);
 	
 	ui_factory->create_flyable_enemy({40, 20}, 3, 2);
-	ui_factory->create_box({18, 19}, 2, 3);
+	ui_factory->create_jumpable_enemy({35, 20}, 3, 2);
 }

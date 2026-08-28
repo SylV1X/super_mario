@@ -33,6 +33,8 @@ namespace biv {
 				const Coord& top_left, const int width, const int height) = 0;
 			virtual void create_money(
 				const Coord& top_left, const int width, const int height) = 0;
+			virtual void create_platform(
+				const Coord& top_left, const int width, const int height) = 0;	
 			virtual void create_ship(
 				const Coord& top_left, const int width, const int height) = 0;
 			virtual GameMap* get_game_map(const int height, const int width) = 0;

@@ -33,11 +33,4 @@ void FlyableEnemy::process_mario_collision(Collisionable* mario) noexcept {
 }
 
 void FlyableEnemy::process_vertical_static_collision(Rect* obj) noexcept {
-	
-	top_left.x += hspeed;
-	if (!has_collision(obj)) {
-		process_horizontal_static_collision(obj);
-	} else {
-		top_left.x -= hspeed;
-	}
 }

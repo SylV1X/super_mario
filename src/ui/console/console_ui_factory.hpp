@@ -8,6 +8,7 @@
 #include "console_game_map.hpp"
 #include "console_mario.hpp"
 #include "console_money.hpp"
+#include "console_platform.hpp"
 #include "console_ship.hpp"
 #include "ui_factory.hpp"
 
@@ -23,6 +24,7 @@ namespace biv {
 			std::vector<ConsoleFlyableEnemy*> flyable_enemies;
 			std::vector<ConsoleJumpableEnemy*> jumpable_enemies;
 			std::vector<ConsoleMoney*> moneys;
+			std::vector<ConsolePlatform*> platforms;
 
 		public:
 			ConsoleUIFactory(Game* game);
@@ -47,6 +49,9 @@ namespace biv {
 				const Coord& top_left, const int width, const int height
 			) override;
 			void create_money(
+				const Coord& top_left, const int width, const int height
+			) override;
+			void create_platform(
 				const Coord& top_left, const int width, const int height
 			) override;
 			void create_ship(

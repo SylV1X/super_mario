@@ -6,6 +6,7 @@ target_sources(${PROJECT_NAME}
 		jumpable_enemy.cpp
 		mario.cpp
 		money.cpp
+		platform.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

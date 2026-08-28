@@ -98,6 +98,17 @@ void ConsoleUIFactory::create_money(
 	game_map->add_obj(money);
 }
 
+void ConsoleUIFactory::create_platform(
+	const Coord& top_left, const int width, const int height
+) {
+	ConsolePlatform* platform = new ConsolePlatform(top_left, width, height);
+	platforms.push_back(platform);
+	game->add_map_movable(platform);
+	game->add_movable(platform);
+	game->add_collisionable(platform);
+	game_map->add_obj(platform);
+}
+
 void ConsoleUIFactory::create_ship(
 	const Coord& top_left, const int width, const int height
 ) {

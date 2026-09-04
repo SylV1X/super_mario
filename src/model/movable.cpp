@@ -32,6 +32,10 @@ void Movable::move_vertical_offset(const float offset) noexcept {
 	top_left.y += offset;
 }
 
+biv::Rect Movable::get_rect() const noexcept {
+	return {top_left, width, height};
+}
+
 // ----------------------------------------------------------------------------
 // 									VIRTUAL
 // ----------------------------------------------------------------------------

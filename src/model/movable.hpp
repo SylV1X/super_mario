@@ -26,6 +26,8 @@ namespace biv {
 			void move_horizontal_offset(const float offset) noexcept;
 			void move_vertical_offset(const float offset) noexcept;
 			
+			Rect get_rect() const noexcept;
+			
 			virtual void move_horizontally() noexcept;
 			virtual void move_vertically() noexcept;
 	};

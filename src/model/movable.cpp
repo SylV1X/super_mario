@@ -18,6 +18,10 @@ float Movable::get_vspeed() const noexcept {
 	return vspeed;
 }
 
+float Movable::get_hspeed() const noexcept {
+	return hspeed;
+}
+
 void Movable::jump() noexcept {
 	if (vspeed == 0) {
 		vspeed = JUMP_SPEED;
@@ -30,10 +34,6 @@ void Movable::move_horizontal_offset(const float offset) noexcept {
 
 void Movable::move_vertical_offset(const float offset) noexcept {
 	top_left.y += offset;
-}
-
-biv::Rect Movable::get_rect() const noexcept {
-	return {top_left, width, height};
 }
 
 // ----------------------------------------------------------------------------

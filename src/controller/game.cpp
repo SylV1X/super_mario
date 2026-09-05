@@ -26,6 +26,14 @@ void Game::add_static_obj(Rect* obj) {
 	static_objs.push_back(obj);
 }
 
+void Game::add_move_collisionable_obj(MoveCollisionable* obj) {
+	move_collisionable_objs.push_back(obj);
+}
+
+void Game::add_movable_platform_obj(Movable* obj) {
+	movable_platform_objs.push_back(obj);
+}
+
 void Game::check_horizontally_static_collisions() noexcept {
 	for (Collisionable* obj: collisionable_objs) {
 		for (Rect* static_obj: static_objs) {
@@ -76,6 +84,15 @@ void Game::check_vertically_static_collisions() noexcept {
 			}
 		}
 	}
+	
+    for (MoveCollisionable* obj: move_collisionable_objs) {
+        for (Movable* movable_platform_obj: movable_platform_objs) {
+            if (obj->has_collision(movable_platform_obj)) {
+                obj->process_move_collision(movable_platform_obj);
+                break;
+            }
+        }
+    }
 }
 
 void Game::finish() noexcept {
@@ -130,10 +147,20 @@ void Game::remove_movable(Movable* obj) {
 	remove_obj(movable_objs, obj);
 }
 
+void Game::remove_move_collisionable_obj(MoveCollisionable* obj) {
+	remove_obj(move_collisionable_objs, obj);
+}
+
+void Game::remove_movable_platform_obj(Movable* obj) {
+	remove_obj(movable_platform_objs, obj);
+}
+
 void Game::remove_objs() {
 	collisionable_objs.clear();
 	map_movable_objs.clear();
 	movable_objs.clear();
+	move_collisionable_objs.clear();
+	movable_platform_objs.clear();
 	static_objs.clear();
 	remove_mario();
 }

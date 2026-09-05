@@ -8,9 +8,6 @@
 
 namespace biv {
 	class Platform : public RectMapMovableAdapter, public Movable, public Collisionable {
-		private:
-			Movable* passenger = nullptr;
-			
 		public:
 			Platform(const Coord& top_left, const int width, const int height);
 			
@@ -18,7 +15,6 @@ namespace biv {
 			Speed get_speed() const noexcept override;
 			
 			void move_vertically() noexcept override;
-			void move_horizontally() noexcept override;
 			
 			void process_horizontal_static_collision(Rect* obj) noexcept override;
 			void process_mario_collision(Collisionable* mario) noexcept override;

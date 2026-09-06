@@ -11,6 +11,7 @@ namespace biv {
 
 			Rect get_rect() const noexcept override;
 			Speed get_speed() const noexcept override;
+			int get_camera_direction() noexcept;
 			
 			void move_map_left() noexcept;
 			void move_map_right() noexcept;

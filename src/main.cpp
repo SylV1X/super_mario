@@ -71,7 +71,7 @@ int main() {
 	
 	biv::UserInput user_input;
 	do {
-		// 2. Получение пользовательского ввода	
+		// 2.1. Получение пользовательского ввода	
 		user_input = keyboard->get_user_input();
 		switch (user_input) {
 			case biv::UserInput::MAP_LEFT:
@@ -93,6 +93,21 @@ int main() {
 				break;
 			case biv::UserInput::EXIT:
 				game.finish();
+				break;
+		}
+		
+		// 2.2. Получение положения камеры относительно границ
+		int camera_direction = mario->get_camera_direction();
+		switch (camera_direction) {
+			case 1:
+				if (!game.check_static_collisions(mario)) {
+					game.move_map_right();
+				}
+				break;
+			case -1:
+				if (!game.check_static_collisions(mario)) {
+					game.move_map_left();
+				}
 				break;
 		}
 		

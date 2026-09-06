@@ -21,6 +21,17 @@ biv::Speed Mario::get_speed() const noexcept {
 	return {vspeed, hspeed};
 }
 
+int Mario::get_camera_direction() noexcept {
+	if (top_left.x < 15) {
+		move_map_left();
+		return 1;
+	} else if (top_left.x + width > 65) {
+		move_map_right();
+		return -1;
+	}
+	return 0;
+}
+
 void Mario::move_map_left() noexcept {
 	move_horizontal_offset(biv::MapMovable::MAP_STEP);
 }

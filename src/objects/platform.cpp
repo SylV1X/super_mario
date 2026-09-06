@@ -17,6 +17,28 @@ biv::Speed Platform::get_speed() const noexcept {
 	return {vspeed, hspeed};
 }
 
+void Platform::move_map_left() noexcept {
+	RectMapMovableAdapter::move_map_left();
+	min_x -= MapMovable::MAP_STEP;
+	max_x -= MapMovable::MAP_STEP;
+}
+
+void Platform::move_map_right() noexcept {
+	RectMapMovableAdapter::move_map_right();
+	min_x += MapMovable::MAP_STEP;
+	max_x += MapMovable::MAP_STEP;
+}
+
+void Platform::move_horizontally() noexcept {
+	if (top_left.x + hspeed <= min_x) {
+		hspeed = -hspeed;
+	} else if (top_left.x + width + hspeed >= max_x) {
+		hspeed = -hspeed;
+	}
+	
+	top_left.x += hspeed;
+}
+
 void Platform::move_vertically() noexcept {
 }
 

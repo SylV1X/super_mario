@@ -17,6 +17,34 @@ biv::Speed FlyableEnemy::get_speed() const noexcept {
 }
 
 void FlyableEnemy::move_vertically() noexcept {
+	if (!is_active()) {
+		if (vspeed < MAX_V_SPEED) {
+			vspeed += V_ACCELERATION;
+		}
+		top_left.y += vspeed;
+	}
+}
+
+void FlyableEnemy::move_map_left() noexcept {
+	RectMapMovableAdapter::move_map_left();
+	min_x -= MapMovable::MAP_STEP;
+	max_x -= MapMovable::MAP_STEP;
+}
+
+void FlyableEnemy::move_map_right() noexcept {
+	RectMapMovableAdapter::move_map_right();
+	min_x += MapMovable::MAP_STEP;
+	max_x += MapMovable::MAP_STEP;
+}
+
+void FlyableEnemy::move_horizontally() noexcept {
+	if (top_left.x + hspeed <= min_x) {
+		hspeed = -hspeed;
+	} else if (top_left.x + width + hspeed >= max_x) {
+		hspeed = -hspeed;
+	}
+	
+	top_left.x += hspeed;
 }
 
 void FlyableEnemy::process_horizontal_static_collision(Rect* obj) noexcept {

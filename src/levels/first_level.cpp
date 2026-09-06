@@ -23,8 +23,7 @@ void FirstLevel::init_data() {
 	ui_factory->create_mario({39, 10}, 3, 3);
 	
 	ui_factory->create_ship({20, 25}, 40, 2);
-	
-	ui_factory->create_box({18, 19}, 2, 3);
+
 	ui_factory->create_full_box({30, 15}, 5, 3);
 	ui_factory->create_full_box({50, 15}, 5, 3);
 	

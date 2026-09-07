@@ -2,10 +2,14 @@
 
 namespace biv {
 	class GameMap {
+		public:
+			static const int LEFT_MAP_BOARD = 0;
+			static const int RIGHT_MAP_BOARD = 250;
+			
 		protected:
 			const int height;
 			const int width;
-			
+		
 		protected:
 			GameMap(const int height, const int width);
 		

@@ -1,5 +1,4 @@
 #include "platform.hpp"
-#include "mario.hpp"
 
 using biv::Platform;
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "collisionable.hpp"
+#include "game_map.hpp"
 #include "movable.hpp"
 #include "rect.hpp"
 #include "rect_map_movable_adapter.hpp"
@@ -9,8 +10,8 @@
 namespace biv {
 	class FlyableEnemy : public RectMapMovableAdapter, public Movable, public Collisionable {
 		private:
-			float min_x = 0;
-			float max_x = 250;
+			float min_x = biv::GameMap::LEFT_MAP_BOARD;
+			float max_x = biv::GameMap::RIGHT_MAP_BOARD;
 			
 		public:
 			FlyableEnemy(const Coord& top_left, const int width, const int height);

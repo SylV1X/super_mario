@@ -40,6 +40,16 @@ void Mario::move_map_right() noexcept {
 	move_horizontal_offset(-biv::MapMovable::MAP_STEP);
 }
 
+void Mario::move_vertically() noexcept {
+	if (vspeed != 0) {
+		hspeed = 0;
+	}
+	if (vspeed < MAX_V_SPEED) {
+		vspeed += V_ACCELERATION;
+	}
+	top_left.y += vspeed;
+}
+
 void Mario::process_horizontal_static_collision(Rect* obj) noexcept {
 	hspeed = -hspeed;
 	move_horizontally();

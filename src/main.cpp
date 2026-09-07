@@ -30,6 +30,7 @@
 #include "mario.hpp"
 #include "os_control_settings.hpp"
 #include "ui_factory.hpp"
+#include "logger.hpp"
 
 #ifdef WINDOWS_CONSOLE
 	#include "windows_control_settings.hpp"
@@ -118,7 +119,7 @@ int main() {
 		game.move_objs_vertically();
 		game.check_mario_collision();
 		game.check_vertically_static_collisions();
-		
+
 		if (
 			game_map->is_below_map(mario->get_top())
 			|| !mario->is_active()

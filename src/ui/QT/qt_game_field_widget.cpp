@@ -10,8 +10,8 @@ using biv::QtGameFieldWidget;
 using biv::UserInput;
 
 QtGameFieldWidget::QtGameFieldWidget(
-	const int map_height, const int map_width, QWidget* parent
-) : QWidget(parent), map_height(map_height), map_width(map_width) {
+	const int map_height, const int map_width, QWidget* parent)
+	: QWidget(parent), map_height(map_height), map_width(map_width) {
 	setFixedSize(map_width * CELL_PX, map_height * CELL_PX);
 	setFocusPolicy(Qt::StrongFocus);
 }

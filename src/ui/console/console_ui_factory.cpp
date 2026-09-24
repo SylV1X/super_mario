@@ -14,6 +14,9 @@ void ConsoleUIFactory::clear_data() {
 	ships.clear();
 	enemies.clear();
 	moneys.clear();
+	flyable_enemies.clear();
+	jumpable_enemies.clear();
+	platforms.clear();
 }
 
 void ConsoleUIFactory::create_box(

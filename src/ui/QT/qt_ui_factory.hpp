@@ -10,13 +10,11 @@
 #include "qt_money.hpp"
 #include "qt_platform.hpp"
 #include "qt_ship.hpp"
-#include "qt_game_field_widget.hpp"
 #include "ui_factory.hpp"
 
 namespace biv {
 	class QtUIFactory : public UIFactory {
 		private:
-			QtGameFieldWidget* widget;
 			QtGameMap* game_map = nullptr;
 			std::vector<QtBox*> boxes;
 			std::vector<QtFullBox*> full_boxes;
@@ -29,7 +27,7 @@ namespace biv {
 			std::vector<QtPlatform*> platforms;
 
 		public:
-			QtUIFactory(Game* game, QtGameFieldWidget* widget);
+			QtUIFactory(Game* game);
 			
 			void clear_data() override;
 			void create_box(

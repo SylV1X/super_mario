@@ -1,2 +1,5 @@
 add_subdirectory(console)
-add_subdirectory(QT)
+
+if(GAME_TYPE STREQUAL "Qt")
+	add_subdirectory(QT)
+endif()

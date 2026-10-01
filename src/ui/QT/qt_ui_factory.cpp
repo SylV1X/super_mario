@@ -1,10 +1,8 @@
 #include "qt_ui_factory.hpp"
-#include "qt_game_field_widget.hpp" 
 
 using biv::QtUIFactory;
 
-QtUIFactory::QtUIFactory(Game* game, QtGameFieldWidget* widget)
-    : UIFactory(game), widget(widget) {}
+QtUIFactory::QtUIFactory(Game* game) : UIFactory(game) {}
 
 void QtUIFactory::clear_data() {
 	game->remove_objs();
@@ -129,7 +127,7 @@ void QtUIFactory::create_ship(
 
 biv::GameMap* QtUIFactory::get_game_map(const int height, const int width) {
 	if (game_map == nullptr) {
-		game_map = new QtGameMap(height, width, widget);
+		game_map = new QtGameMap(height, width);
 	}
 	return game_map;
 }

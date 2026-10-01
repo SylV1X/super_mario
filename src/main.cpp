@@ -39,9 +39,15 @@
 	#include "linux_control_settings.hpp"
 	#include "linux_keyboard.hpp"
 	#include "ncurses.h"
+#elif defined(QT_UI)
+	#include <QApplication>
+	#include <QWidget>
+	#include "qt_control_settings.hpp"
+	#include "qt_ui_factory.hpp"
+	#include "windows_keyboard.hpp"
 #endif
 
-int main() {
+int main(int argc, char* argv[]) {
 	// 1. Установка параметров игры
 	using namespace std::chrono_literals;
 	
@@ -59,13 +65,22 @@ int main() {
 		control_settings = new biv::LinuxControlSettings(map_height, map_weight);
 		keyboard = new biv::LinuxKeyboard();
 		frame_delay = std::chrono::milliseconds(50);
+	#elif defined(QT_UI)
+		QApplication app(argc, argv);
+		control_settings = new biv::QtControlSettings();
+		keyboard = new biv::WindowsKeyBoard();
+		frame_delay = std::chrono::milliseconds(10);
 	#endif
-	
+
 	control_settings->init();
 	keyboard->on();
 	
 	biv::Game game;
-	biv::UIFactory* ui_factory = new biv::ConsoleUIFactory(&game);
+	#ifdef QT_UI
+		biv::UIFactory* ui_factory = new biv::QtUIFactory(&game);
+	#else
+		biv::UIFactory* ui_factory = new biv::ConsoleUIFactory(&game);
+	#endif
 	biv::GameMap* game_map = ui_factory->get_game_map(map_height, map_weight);
 	biv::GameLevel* game_level = new biv::FirstLevel(ui_factory);
 	biv::Mario* mario = ui_factory->get_mario();
@@ -148,6 +163,20 @@ int main() {
 		game_map->refresh();
 		control_settings->set_cursor_start_position();
 		game_map->show();
+		
+		#ifdef QT_UI
+			QApplication::processEvents();
+			bool has_visible_window = false;
+			for (QWidget* window : QApplication::topLevelWidgets()) {
+				if (window->isVisible()) {
+					has_visible_window = true;
+				}
+			}
+			if (!has_visible_window) {
+				game.finish();
+			}
+		#endif
+		
 		std::this_thread::sleep_for(frame_delay);
 	} while (
 		/* 5. Проверка того, не окончена ли игра */ 

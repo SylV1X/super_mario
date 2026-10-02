@@ -29,16 +29,22 @@ void QtGameMap::add_obj(QtUIObject* obj) {
 }
 
 void QtGameMap::clear() noexcept {
+	static const QPixmap sky = QPixmap(SPRITES_DIR "sky.png").scaled(TILE_PX, TILE_PX);
+	static const QPixmap water = QPixmap(SPRITES_DIR "water.png").scaled(TILE_PX, TILE_PX);
+	static const QPixmap waves = QPixmap(SPRITES_DIR "water_top.png").scaled(TILE_PX, TILE_PX);
+		
 	QPainter painter(&buffer);
 	
 	// Воздух
-	painter.fillRect(buffer.rect(), QColor(135, 206, 235));
+	painter.drawTiledPixmap(buffer.rect(), sky);
 	
 	// Вода
-	painter.fillRect(
-		QRect(0, (height - 3) * CELL_PX, width * CELL_PX, 3 * CELL_PX),
-		QColor(0, 105, 148)
-	);
+	QRect water_rect(0, (height - 3) * CELL_PX, width * CELL_PX, 3 * CELL_PX);
+	painter.drawTiledPixmap(water_rect, water);
+	
+	QRect waves_rect = water_rect;
+	waves_rect.setHeight(std::min(TILE_PX, water_rect.height()));
+	painter.drawTiledPixmap(waves_rect, waves);
 }
 
 void QtGameMap::refresh() noexcept {

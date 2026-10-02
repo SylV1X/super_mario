@@ -1,5 +1,6 @@
 #pragma once
 
 namespace biv {
-	constexpr int CELL_PX = 20;
+	const int CELL_PX = 12;
+	const int TILE_PX = 3 * CELL_PX;
 }

@@ -10,4 +10,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+	SPRITES_DIR="${CMAKE_CURRENT_SOURCE_DIR}/sprites/"
+)
+
 add_subdirectory(ui_objects)

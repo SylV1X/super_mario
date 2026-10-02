@@ -6,5 +6,6 @@ QtJumpableEnemy::QtJumpableEnemy(const Coord& top_left, const int width, const i
 	: JumpableEnemy(top_left, width, height) {}
 
 void QtJumpableEnemy::paint(QPainter& painter) const {
-	painter.fillRect(get_scaled_rect(), QColor(255, 140, 0)); // orange
+	static const QPixmap sprite(SPRITES_DIR "koopa_green.png");
+	painter.drawPixmap(get_sprite_rect(sprite.size()), sprite);
 }

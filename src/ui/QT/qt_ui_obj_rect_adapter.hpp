@@ -12,5 +12,8 @@ namespace biv {
 			);
 
 			QRect get_scaled_rect() const noexcept override;
+			
+		protected:
+			QRect get_sprite_rect(const QSize& sprite_size) const noexcept;
 	};
 }

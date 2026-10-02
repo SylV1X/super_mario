@@ -6,5 +6,6 @@ QtMoney::QtMoney(const Coord& top_left, const int width, const int height)
 	: Money(top_left, width, height) {}
 
 void QtMoney::paint(QPainter& painter) const {
-	painter.fillRect(get_scaled_rect(), QColor(255, 223, 0)); // gold
+	static const QPixmap sprite(SPRITES_DIR "coin.png");
+	painter.drawPixmap(get_sprite_rect(sprite.size()), sprite);
 }

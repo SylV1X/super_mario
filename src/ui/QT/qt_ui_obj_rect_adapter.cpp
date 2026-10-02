@@ -20,3 +20,18 @@ QRect QtUIObjectRectAdapter::get_scaled_rect() const noexcept {
 		(get_bottom() - get_top()) * CELL_PX
 	);
 }
+
+// ----------------------------------------------------------------------------
+// 									PROTECTED
+// ----------------------------------------------------------------------------
+QRect QtUIObjectRectAdapter::get_sprite_rect(const QSize& sprite_size) const noexcept {
+	QRect area = get_scaled_rect();
+	QSize size = sprite_size.scaled(area.size(), Qt::KeepAspectRatio);
+
+	return QRect(
+		area.left() + (area.width() - size.width()) / 2,
+		area.top() + area.height() - size.height(),
+		size.width(),
+		size.height()
+	);
+}

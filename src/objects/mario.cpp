@@ -32,6 +32,18 @@ int Mario::get_camera_direction() noexcept {
 	return 0;
 }
 
+void Mario::set_face_left() noexcept {
+	face_direction = true;
+}
+
+void Mario::set_face_right() noexcept {
+	face_direction = false;
+}
+
+bool Mario::is_facing_left() const noexcept {
+	return face_direction;
+}
+
 void Mario::move_map_left() noexcept {
 	move_horizontal_offset(biv::MapMovable::MAP_STEP);
 }

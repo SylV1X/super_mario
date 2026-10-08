@@ -6,12 +6,19 @@
 
 namespace biv {
 	class Mario : public MoveCollisionable {
+		private:
+			bool face_direction = false;
+			
 		public:
 			Mario(const Coord& top_left, const int width, const int height);
 
 			Rect get_rect() const noexcept override;
 			Speed get_speed() const noexcept override;
 			int get_camera_direction() noexcept;
+			
+			void set_face_left() noexcept;
+			void set_face_right() noexcept;
+			bool is_facing_left() const noexcept;
 			
 			void move_map_left() noexcept;
 			void move_map_right() noexcept;

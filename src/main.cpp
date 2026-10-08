@@ -91,6 +91,7 @@ int main(int argc, char* argv[]) {
 		user_input = keyboard->get_user_input();
 		switch (user_input) {
 			case biv::UserInput::MAP_LEFT:
+				mario->set_face_right();
 				mario->move_map_left();
 				if (!game.check_static_collisions(mario)) {
 					game.move_map_left();
@@ -98,6 +99,7 @@ int main(int argc, char* argv[]) {
 				mario->move_map_right();
 				break;
 			case biv::UserInput::MAP_RIGHT:
+				mario->set_face_left();
 				mario->move_map_right();
 				if (!game.check_static_collisions(mario)) {
 					game.move_map_right();

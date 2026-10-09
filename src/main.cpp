@@ -43,8 +43,8 @@
 	#include <QApplication>
 	#include <QWidget>
 	#include "qt_control_settings.hpp"
+	#include "qt_keyboard.hpp"
 	#include "qt_ui_factory.hpp"
-	#include "windows_keyboard.hpp"
 #endif
 
 int main(int argc, char* argv[]) {
@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
 	#elif defined(QT_UI)
 		QApplication app(argc, argv);
 		control_settings = new biv::QtControlSettings();
-		keyboard = new biv::WindowsKeyBoard();
+		keyboard = new biv::QtKeyBoard();
 		frame_delay = std::chrono::milliseconds(10);
 	#endif
 
@@ -186,4 +186,5 @@ int main(int argc, char* argv[]) {
 	);
 	
 	// 6. Завершение
+	return 0;
 }

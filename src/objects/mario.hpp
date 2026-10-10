@@ -7,7 +7,7 @@
 namespace biv {
 	class Mario : public MoveCollisionable {
 		private:
-			bool face_direction = false;
+			bool facing_left = false;
 			
 		public:
 			Mario(const Coord& top_left, const int width, const int height);

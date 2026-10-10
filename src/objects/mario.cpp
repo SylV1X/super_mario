@@ -33,15 +33,15 @@ int Mario::get_camera_direction() noexcept {
 }
 
 void Mario::set_face_left() noexcept {
-	face_direction = true;
+	facing_left = true;
 }
 
 void Mario::set_face_right() noexcept {
-	face_direction = false;
+	facing_left = false;
 }
 
 bool Mario::is_facing_left() const noexcept {
-	return face_direction;
+	return facing_left;
 }
 
 void Mario::move_map_left() noexcept {

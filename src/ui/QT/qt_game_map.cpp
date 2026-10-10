@@ -16,6 +16,7 @@ QtGameMap::QtGameMap(const int height, const int width)
 	screen = new QLabel();
 	screen->setFixedSize(buffer.size());
 	screen->setWindowTitle("Super Mario");
+	screen->show();
 	
 	clear();
 }
@@ -65,8 +66,5 @@ void QtGameMap::remove_objs() {
 	objs.clear();
 }
 void QtGameMap::show() const noexcept {
-	if (!screen->isVisible()) {
-		screen->show();
-	}
 	screen->setPixmap(buffer);
 }

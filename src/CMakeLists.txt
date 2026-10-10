@@ -29,5 +29,8 @@ elseif(GAME_TYPE STREQUAL "Qt")
 	set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
 	target_link_libraries(${PROJECT_NAME} Qt6::Widgets)
 	target_compile_definitions(${PROJECT_NAME} PRIVATE QT_UI)
+	get_filename_component(QT_BIN_DIR "${Qt6_DIR}/../../../bin" ABSOLUTE)
+	file(TO_NATIVE_PATH "${QT_BIN_DIR}" QT_BIN_DIR)
+	configure_file("${CMAKE_CURRENT_SOURCE_DIR}/../start_game.bat.in" "${CMAKE_BINARY_DIR}/start_game.bat" @ONLY)
 endif()
 

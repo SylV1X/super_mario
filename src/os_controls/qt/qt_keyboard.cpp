@@ -13,6 +13,11 @@ const int KEY_Q = 81;
 const int KEY_SPACE = 32;
 
 bool QtKeyBoard::eventFilter(QObject* obj, QEvent* event) {
+	if (event->type() == QEvent::Close) {
+		window_closed = true;
+		return false;
+	}
+	
 	if (event->type() == QEvent::WindowDeactivate) {
 		pressed_keys.clear();
 		return false;
@@ -35,14 +40,18 @@ bool QtKeyBoard::eventFilter(QObject* obj, QEvent* event) {
 }
 
 UserInput QtKeyBoard::get_user_input() {
+	QCoreApplication::processEvents();
+
+	if (window_closed || pressed_keys.count(KEY_Q) > 0) {
+		return UserInput::EXIT;
+	}
+	
 	if (pressed_keys.count(KEY_A) > 0) {
 		return UserInput::MAP_RIGHT;
 	} else if (pressed_keys.count(KEY_D) > 0) {
 		return UserInput::MAP_LEFT;
 	} else if (pressed_keys.count(KEY_SPACE) > 0) {
 		return UserInput::MARIO_JUMP;
-	} else if (pressed_keys.count(KEY_Q) > 0) {
-		return UserInput::EXIT;
 	} else {
 		return UserInput::NO_INPUT;
 	}

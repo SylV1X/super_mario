@@ -1,0 +1,4 @@
+@echo off
+set "PATH=@QT_BIN_DIR@;%PATH%"
+cd /d "%~dp0"
+start "" @PROJECT_NAME@.exe

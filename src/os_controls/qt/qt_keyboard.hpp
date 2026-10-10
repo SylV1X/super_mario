@@ -12,6 +12,7 @@ namespace biv {
 		
 		private:
 			std::set<int> pressed_keys;
+			bool window_closed = false;
 			bool eventFilter(QObject* obj, QEvent* event) override;
 			
 		public:

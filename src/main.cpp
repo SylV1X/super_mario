@@ -21,7 +21,6 @@
 #include <thread>
 #include <chrono>
 
-#include "console_ui_factory.hpp"
 #include "first_level.hpp"
 #include "game.hpp"
 #include "game_level.hpp"
@@ -33,15 +32,16 @@
 #include "logger.hpp"
 
 #ifdef WINDOWS_CONSOLE
+	#include "console_ui_factory.hpp"
 	#include "windows_control_settings.hpp"
 	#include "windows_keyboard.hpp"
 #elif defined(LINUX_CONSOLE)
+	#include "console_ui_factory.hpp"
 	#include "linux_control_settings.hpp"
 	#include "linux_keyboard.hpp"
 	#include "ncurses.h"
 #elif defined(QT_UI)
 	#include <QApplication>
-	#include <QWidget>
 	#include "qt_control_settings.hpp"
 	#include "qt_keyboard.hpp"
 	#include "qt_ui_factory.hpp"
@@ -165,20 +165,6 @@ int main(int argc, char* argv[]) {
 		game_map->refresh();
 		control_settings->set_cursor_start_position();
 		game_map->show();
-		
-		#ifdef QT_UI
-			QApplication::processEvents();
-			bool has_visible_window = false;
-			for (QWidget* window : QApplication::topLevelWidgets()) {
-				if (window->isVisible()) {
-					has_visible_window = true;
-				}
-			}
-			if (!has_visible_window) {
-				game.finish();
-			}
-		#endif
-		
 		std::this_thread::sleep_for(frame_delay);
 	} while (
 		/* 5. Проверка того, не окончена ли игра */ 
